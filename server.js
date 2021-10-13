@@ -10,6 +10,9 @@ require("./authenticate")
 const app = express();
 const userRouter = require("./routes/userRoutes")
 
+const redirectRouter = require('./routes/redirectRoutes')
+const urlRouter = require('./routes/urlRoutes')
+
 var corsOptions = {
   origin: "http://localhost:8081"
 };
@@ -24,6 +27,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // routes
 app.use("/users", userRouter)
+app.use('/api/url', urlRouter)
+app.use('/', redirectRouter)
 
 // set port, listen for requests
 const PORT = process.env.PORT;
