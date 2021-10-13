@@ -15,8 +15,8 @@ var config = {
 var transporter = nodemailer.createTransport(config);
 
 var defaultMail = {
-    from: 'khlifisahbi@live.com',
-    subject: 'activation account',
+    from: 'khlifisahbi@gmail.com',
+    subject: 'Activation account',
 };
 
 module.exports = function(mail){

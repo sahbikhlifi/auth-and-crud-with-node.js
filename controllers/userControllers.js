@@ -56,23 +56,18 @@ exports.loginController = async (req, res, next) => {
 }
 
 exports.activeAccount = (req, res, next) => {
-    // find the corresponding user
     User.findOne({
         activeToken: req.params.activeToken,
-        // check if the expire time > the current time activeExpires: {$gt: Date.now()}
     }, function (err, user) {
         if (err) return next(err);
-        // invalid activation code
         if (!user) {
-            return res.status(401).send({ success: false, message: "not actived" })
+            return res.status(401).send({ success: false, message: "Account not activated" })
         }
-        // activate and save
         user.active = true;
         user.save(function (err, user) {
             console.log(user.active)
             if (err) return next(err);
-            // activation success
-            return res.status(201).send({ success: true, message: "actived account" })
+            return res.status(201).send({ success: true, message: "Account activated" })
         });
     });
 }
